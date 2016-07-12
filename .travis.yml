@@ -1,9 +1,10 @@
 os:
   - linux
+  - osx
 
 language: c
-compiler:
-  - gcc
+
+compiler: gcc
 
 sudo: false
 
@@ -18,6 +19,9 @@ addons:
 cache:
   directories:
   - $HOME/.ccache
+
+before install:
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update          ; fi
 
 before_script:
     make clean
