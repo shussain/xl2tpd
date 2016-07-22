@@ -24,11 +24,10 @@ before install:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update          ; fi
 
 before_script:
-    make clean
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
-        sed -i '/linux/I s/^/#/' Makefile
-        sed -i '/-DOPENBSD/ s/^#//' Makefile
-        sed -i '1,/LDLIB/s/^#LDLIB/LDLIB/' Makefile
-    ; fi
+  - make clean
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then sed -i '/linux/I s/^/#/' Makefile ; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then sed -i '/-DOPENBSD/ s/^#//' Makefile ; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then sed -i '1,/LDLIB/s/^#LDLIB/LDLIB/' Makefile ; fi
+
 script:
     make
